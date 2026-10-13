@@ -1,0 +1,23 @@
+
+# Fichiers sensibles et variables d'environnement
+.env
+.env.*
+!.env.example
+application-local.properties
+application-prod.properties
+secrets.properties
+
+# Java / Maven
+backend/target/
+**/target/
+
+# Angular / Ionic / Node.js
+node_modules/
+.angular/
+dist/
+www/
+coverage/
+
+# Android / Capacitor
+**/.gradle/
+**/build/
