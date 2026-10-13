@@ -1,5 +1,6 @@
 package com.projet.backend.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -14,6 +15,9 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
+    @Value("${app.cors.origins}")
+    private String origins;
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
@@ -26,7 +30,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("*"));
+        configuration.setAllowedOriginPatterns(List.of(origins.split("\\s*, \\s*")));
         configuration.setAllowedMethods(List.of("GET","POST","DELETE","UPDATE","PUT"));
         configuration.setAllowedHeaders(List.of("*"));
 
